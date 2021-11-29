@@ -1,5 +1,6 @@
 package com.redi.j2.utils;
 
+import java.util.Collection;
 import java.util.List;
 
 public class ProductProxy {
@@ -62,7 +63,7 @@ public class ProductProxy {
                 new Class[] {String.class}, new Object[] { tag });
     }
 
-    public List<String> getTags() {
+    public Collection<String> getTags() {
         if(product == null) {
             return null;
         }
