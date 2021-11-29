@@ -2,6 +2,7 @@ package com.redi.j2.utils;
 
 import java.lang.reflect.*;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import static java.lang.Class.*;
@@ -62,6 +63,18 @@ public class ReflectionUtils {
         }
         Type type = field.getGenericType();
         if (field.getType() == List.class && type instanceof ParameterizedType) {
+            ParameterizedType pType = (ParameterizedType)type;
+            return pType.getActualTypeArguments()[0].getTypeName() == aClass.getTypeName();
+        }
+        return false;
+    }
+
+    public static boolean isCollectionOf(Class<?> aClass, Field field) {
+        if(aClass == null || field == null) {
+            return false;
+        }
+        Type type = field.getGenericType();
+        if (Collection.class.isAssignableFrom(field.getType()) && type instanceof ParameterizedType) {
             ParameterizedType pType = (ParameterizedType)type;
             return pType.getActualTypeArguments()[0].getTypeName() == aClass.getTypeName();
         }

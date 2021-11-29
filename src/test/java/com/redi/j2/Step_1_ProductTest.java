@@ -101,6 +101,6 @@ public class Step_1_ProductTest {
         assertTrue(ReflectionUtils.isPrivate(f), "Property 'tags' must be private");
 
         // and - its type to be List<String>
-        assertTrue(ReflectionUtils.isListOf(String.class, f), "Property 'tags' should have type List<String>");
+        assertTrue(ReflectionUtils.isCollectionOf(String.class, f), "Property 'tags' should have type Collection<String>");
     }
 }

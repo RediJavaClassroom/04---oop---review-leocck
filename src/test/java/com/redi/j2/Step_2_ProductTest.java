@@ -4,6 +4,7 @@ import com.redi.j2.utils.ReflectionUtils;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
+import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,7 +46,7 @@ public class Step_2_ProductTest {
         assertEquals(42.9f, (float)ReflectionUtils.getValueFromProperty(product, "price"), "Price property should be initialized");
 
         // and - the list of tags must be empty
-        List<String> tags = ReflectionUtils.getValueFromProperty(product, "tags");
+        Collection<String> tags = ReflectionUtils.getValueFromProperty(product, "tags");
         assertNotNull(tags, "The tags list must be initialized");
         assertTrue(tags.isEmpty(), "The tags list must start empty");
     }

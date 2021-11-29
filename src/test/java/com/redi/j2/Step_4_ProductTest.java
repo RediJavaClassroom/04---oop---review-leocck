@@ -6,6 +6,7 @@ import com.redi.j2.utils.ReflectionUtils;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -87,7 +88,7 @@ public class Step_4_ProductTest {
         product.addTag("christmas");
 
         // then - the tag is added to the list
-        List<String> tags = product.getTags();
+        Collection<String> tags = product.getTags();
         assertEquals(1, tags.size(), "The size of the list is wrong");
         assertTrue(tags.contains("christmas"), "The specified tag was not found in the list");
     }
@@ -102,7 +103,7 @@ public class Step_4_ProductTest {
         product.addTag("valentine");
 
         // then - the tag is added to the list
-        List<String> tags = product.getTags();
+        Collection<String> tags = product.getTags();
         assertEquals(2, tags.size(), "The size of the list is wrong");
         assertTrue(tags.contains("discount"), "The old tag was not found in the list");
         assertTrue(tags.contains("valentine"), "The specified tag was not found in the list");
@@ -118,7 +119,7 @@ public class Step_4_ProductTest {
         product.addTag("discount");
 
         // then - the tag is not added to the list
-        List<String> tags = product.getTags();
+        Collection<String> tags = product.getTags();
         assertEquals(1, tags.size(), "The size of the list is wrong");
         assertTrue(tags.contains("discount"), "The specified tag was not found in the list");
     }
@@ -256,7 +257,8 @@ public class Step_4_ProductTest {
         assertTrue(result.contains(product.getBrand()), "The value of the property 'brand' should be present in the String");
         assertTrue(result.contains(product.getCategory()), "The value of the property 'category' should be present in the String");
         assertTrue(result.contains(product.getPrice() + ""), "The value of the property 'price' should be present in the String");
-        assertTrue(result.contains(product.getTags().get(0)), "The tag '"+product.getTags().get(0)+"' should be present in the String");
-        assertTrue(result.contains(product.getTags().get(1)), "The tag '"+product.getTags().get(1)+"' should be present in the String");
+        for(String tag : product.getTags()) {
+            assertTrue(result.contains(tag), "The tag '"+tag+"' should be present in the String");
+        }
     }
 }
